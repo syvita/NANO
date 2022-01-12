@@ -1,3 +1,3 @@
-module org.getmonero.util.normalizeZip {
+module org.syvita.util.normalizeZip {
   requires org.apache.commons.compress;
 }

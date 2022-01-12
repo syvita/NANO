@@ -1,4 +1,4 @@
-package org.getmonero.util.normalizeZip;
+package org.syvita.util.normalizeZip;
 
 /*
  * Licensed under the Apache License, Version 2.0 (the "License");

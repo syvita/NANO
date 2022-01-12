@@ -1,4 +1,4 @@
-package org.getmonero.i2p.zero;
+package org.syvita.i2p.nano;
 
 import java.io.PrintStream;
 import java.util.Properties;

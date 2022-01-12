@@ -11,12 +11,12 @@ fi
 source "$basedir/bin/java-config.sh"
 
 echo "*** Compiling CLI"
-"$JAVA_HOME"/bin/javac --module-path "$basedir/target/modules/combined.jar" -d "$basedir/target/classes/org.getmonero.i2p.zero" $(find "$basedir/org.getmonero.i2p.zero/src" -name '*.java')
-cp "$basedir/org.getmonero.i2p.zero/src/org/getmonero/i2p/zero/VERSION" "$basedir/target/classes/org.getmonero.i2p.zero/org/getmonero/i2p/zero/"
+"$JAVA_HOME"/bin/javac --module-path "$basedir/target/modules/combined.jar" -d "$basedir/target/classes/org.syvita.i2p.nano" $(find "$basedir/org.syvita.i2p.nano/src" -name '*.java')
+cp "$basedir/org.syvita.i2p.nano/src/org/syvita/i2p/nano/VERSION" "$basedir/target/classes/org.syvita.i2p.nano/org/syvita/i2p/nano/"
 
 echo "*** Packaging CLI as a modular jar"
-"$JAVA_HOME"/bin/jar --create --file "$basedir/target/org.getmonero.i2p.zero.jar" --main-class org.getmonero.i2p.zero.Main -C "$basedir/target/classes/org.getmonero.i2p.zero" .
-normalizeZip "$basedir/target/org.getmonero.i2p.zero.jar"
+"$JAVA_HOME"/bin/jar --create --file "$basedir/target/org.syvita.i2p.nano.jar" --main-class org.syvita.i2p.nano.Main -C "$basedir/target/classes/org.syvita.i2p.nano" .
+normalizeZip "$basedir/target/org.syvita.i2p.nano.jar"
 
 # create OS specific launchers which will bundle together the code and a minimal JVM
 for i in ${TARGETS}; do
@@ -24,7 +24,7 @@ for i in ${TARGETS}; do
 
   JAVA_HOME_VARIANT=$basedir/import/jdks/${i}/${variables["JAVA_HOME_$i"]}
   echo "Using JAVA_HOME_VARIANT: $JAVA_HOME_VARIANT"
-  "$JAVA_HOME"/bin/jlink --module-path "${JAVA_HOME_VARIANT}/jmods":"$basedir/target/modules":"$basedir/target/org.getmonero.i2p.zero.jar" --add-modules combined,org.getmonero.i2p.zero --output "$basedir/dist/$i/router" --compress 2 --no-header-files --no-man-pages --order-resources=**/module-info.class,/java.base/java/lang/**,**javafx**
+  "$JAVA_HOME"/bin/jlink --module-path "${JAVA_HOME_VARIANT}/jmods":"$basedir/target/modules":"$basedir/target/org.syvita.i2p.nano.jar" --add-modules combined,org.syvita.i2p.nano --output "$basedir/dist/$i/router" --compress 2 --no-header-files --no-man-pages --order-resources=**/module-info.class,/java.base/java/lang/**,**javafx**
 done
 
 for target in ${TARGETS}; do

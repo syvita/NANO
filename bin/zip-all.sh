@@ -10,7 +10,7 @@ fi
 
 source "$basedir/bin/java-config.sh"
 
-VERSION=$(head -n 1 "$basedir/org.getmonero.i2p.zero/src/org/getmonero/i2p/zero/VERSION")
+VERSION=$(head -n 1 "$basedir/org.syvita.i2p.nano/src/org/syvita/i2p/nano/VERSION")
 
 rm -fr "$basedir/dist-zip-staging"
 mkdir -p "$basedir/dist-zip-staging"
@@ -24,7 +24,7 @@ for i in ${TARGETS}; do
   cp -r ${i} "$basedir"/dist-zip-staging/i2p-zero-${i}.v${VERSION}
 done
 
-versionDate=`date -r "$basedir"/org.getmonero.i2p.zero/src/org/getmonero/i2p/zero/VERSION +"%Y%m%d%H%M.%S"`
+versionDate=`date -r "$basedir"/org.syvita.i2p.nano/src/org/syvita/i2p/nano/VERSION +"%Y%m%d%H%M.%S"`
 
 find "$basedir"/dist-zip-staging -exec touch -t $versionDate {} \;
 

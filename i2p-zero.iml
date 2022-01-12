@@ -8,8 +8,8 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/dist" />
       <excludeFolder url="file://$MODULE_DIR$/import" />
-      <excludeFolder url="file://$MODULE_DIR$/org.getmonero.i2p.zero" />
-      <excludeFolder url="file://$MODULE_DIR$/org.getmonero.i2p.zero.gui" />
+      <excludeFolder url="file://$MODULE_DIR$/org.syvita.i2p.nano" />
+      <excludeFolder url="file://$MODULE_DIR$/org.syvita.i2p.nano.gui" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

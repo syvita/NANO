@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>bin/launch-gui.sh</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.getmonero.i2p.zero.gui</string>
+	<string>org.syvita.i2p.nano.gui</string>
 	<key>CFBundleName</key>
 	<string>i2p-zero</string>
 	<key>CFBundleIconFile</key>

@@ -1,4 +1,4 @@
-package org.getmonero.i2p.zero;
+package org.syvita.i2p.nano;
 
 import net.i2p.I2PAppContext;
 import net.i2p.app.ClientAppManager;
