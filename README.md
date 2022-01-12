@@ -1,4 +1,4 @@
-<img src="https://github.com/i2p-zero/i2p-zero/blob/master/i2p-zero.png" align="left" width="336" height="124">
+<img src="https://github.com/syvita/i2p-zero/blob/master/i2p-zero.png" align="left" width="336" height="124">
 
 ## Zero dependency, small footprint, cross-platform I2P Java Router with GUI, simple tunnel/socks controller and SAM interface
 
@@ -13,31 +13,7 @@ The launchers will include the I2P router, a SAM listener, simple tunnel and soc
 
 ## Downloads
 
-Download the latest binary releases for Mac/Windows/Linux here: https://github.com/i2p-zero/i2p-zero/releases
-
-## GUI Screenshots
-
-<img src="https://github.com/i2p-zero/i2p-zero/blob/master/screenshot1.png" align="center" width="472" height="440">
-<br/>
-<img src="https://github.com/i2p-zero/i2p-zero/blob/master/screenshot2.png" align="center" width="892" height="549">
-<br/>
-<img src="https://github.com/i2p-zero/i2p-zero/blob/master/screenshot3.png" align="center" width="880" height="540">
-
-## Footprint
-
-The zero-dependency distribution sizes are as follows:
-
-OS           | Uncompressed size (MB)  | Compressed size (MB)  | v1.20 Reproducible build SHA-256
------------- | ----------------------- | --------------------- | ------------------------------------------------------------------
-Mac          | 38.5                    | 26.5                  | `9d35c9d31e7c8c820736f7437e02d928f325f4197cf19c7720196c1e586ce1a1`
-Windows      | 47.8                    | 32.4                  | `37c38e66a1f4935a21c2514eb4692827834ec8bd9c2dfc11d6871f7a07dbdd16`
-Linux        | 61.3                    | 36.6                  | `7e7216b281624ec464b55217284017576d109eaba7b35f7e4994ae2a78634de7`
-Mac GUI      | 61.2                    | 45.9                  | `9278fce1196555fd9823d74b716cb0370bac26b964a50b4e9a11eae0f2107eb4`
-Windows GUI  | 70.3                    | 50.7                  | `20723da50684c6a6581b36f8c7a90e9d63baf0e4848e0b781a343ad1791ab2a0`
-Linux GUI    | 87.4                    | 56.9                  | `1852ecf426d87c6931b163964fa55ddc09da60ede217da1f033a6f78acce2ad1`
-
-Note: Reproducible builds are currently experimental. Due to JDK differences, Builds on Mac will consistently have different hashes than builds on Linux. Official releases will always be built using Docker.
-
+Download the latest binary releases for Mac/Windows/Linux here: https://github.com/syvita/i2p-zero/releases
 
 ## Building the launchers
 
@@ -100,14 +76,6 @@ Run the `bin/build-all-and-zip.sh` script, which will in turn call the following
 the jlink tool to build zero-dependency platform-specific launchers.
 
 4. `bin/zip-all.sh` to produce the distribution zip files and display their SHA-256 hashes. Note that reproducible builds are currently a work in progress, and that only builds on Linux will show the same hashes as the official releases.
-
-## Running the GUI
-
-To run the Linux router, double-click the app located at `dist/linux-gui/router/bin/i2p-zero`
-
-To run the MacOS router, double-click the app located at `dist/mac-gui/router/i2p-zero.app`
-
-For Windows, double-click the app located at `dist/win-gui/router/i2p-zero.exe`
 
 ## Running the command line version
 
