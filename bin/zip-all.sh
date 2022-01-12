@@ -22,7 +22,6 @@ cd "$basedir/dist"
 
 for i in ${TARGETS}; do
   cp -r ${i} "$basedir"/dist-zip-staging/i2p-zero-${i}.v${VERSION}
-  cp -r ${i}-gui "$basedir"/dist-zip-staging/i2p-zero-${i}-gui.v${VERSION}
 done
 
 versionDate=`date -r "$basedir"/org.getmonero.i2p.zero/src/org/getmonero/i2p/zero/VERSION +"%Y%m%d%H%M.%S"`
@@ -54,7 +53,6 @@ print4ColsJustified "OS" "Uncompressed size (MB)" "Compressed size (MB)" "v$VERS
 print4ColsJustified "------------------------" "------------------------" "------------------------" "------------------------------------------------------------------"
 for i in ${TARGETS}; do
   print4ColsJustified "${i}"         "`getFileSizeMB $basedir/dist/${i}`"       "`getFileSizeMB $basedir/dist-zip/i2p-zero-${i}.v${VERSION}.zip`"       "\``getHash $basedir/dist-zip/i2p-zero-${i}.v${VERSION}.zip`\`"
-  print4ColsJustified "${i} GUI"         "`getFileSizeMB $basedir/dist/${i}-gui`"       "`getFileSizeMB $basedir/dist-zip/i2p-zero-${i}-gui.v${VERSION}.zip`"       "\``getHash $basedir/dist-zip/i2p-zero-${i}-gui.v${VERSION}.zip`\`"
 done
 
 echo ""
