@@ -32,10 +32,8 @@ find "$basedir"/dist-zip-staging -exec touch -t $versionDate {} \;
 cd "$basedir/dist-zip-staging"
 
 for i in ${TARGETS}; do
-  for j in "" "-gui"; do
-    zip -r9 "$basedir"/dist-zip/i2p-zero-${i}${j}.v${VERSION}.zip i2p-zero-${i}${j}.v${VERSION}
-    normalizeZip "$basedir"/dist-zip/i2p-zero-${i}${j}.v${VERSION}.zip
-  done
+    zip -r9 "$basedir"/dist-zip/i2p-zero-${i}.v${VERSION}.zip i2p-zero-${i}.v${VERSION}
+    normalizeZip "$basedir"/dist-zip/i2p-zero-${i}.v${VERSION}.zip
 done
 
 cd ..
