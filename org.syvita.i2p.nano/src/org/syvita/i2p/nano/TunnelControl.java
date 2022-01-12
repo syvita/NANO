@@ -709,7 +709,7 @@ public class TunnelControl implements Runnable {
 						}
 
 						case "version": {
-							out.println("i2p-zero " + UpdateCheck.currentVersion);
+							out.println("syvita-nano 0.0.1");
 							break;
 						}
 

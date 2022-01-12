@@ -145,8 +145,6 @@ public class RouterWrapper {
 					tunnelControl = new TunnelControl(this, i2PConfigDir, new File(i2PConfigDir, "tunnelTemp"));
 					
 					new Thread(tunnelControl).start();
-
-					UpdateCheck.scheduleUpdateCheck(i2PConfigDir, router, updateAvailableCallback);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
