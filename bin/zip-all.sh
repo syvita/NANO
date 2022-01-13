@@ -21,7 +21,7 @@ mkdir -p "$basedir/dist-zip"
 cd "$basedir/dist"
 
 for i in ${TARGETS}; do
-  cp -r ${i} "$basedir"/dist-zip-staging/i2p-zero-${i}.v${VERSION}
+  cp -r ${i} "$basedir"/dist-zip-staging/NANO-${i}.v${VERSION}
 done
 
 versionDate=`date -r "$basedir"/org.syvita.i2p.nano/src/org/syvita/i2p/nano/VERSION +"%Y%m%d%H%M.%S"`
@@ -31,8 +31,8 @@ find "$basedir"/dist-zip-staging -exec touch -t $versionDate {} \;
 cd "$basedir/dist-zip-staging"
 
 for i in ${TARGETS}; do
-    zip -r9 "$basedir"/dist-zip/i2p-zero-${i}.v${VERSION}.zip i2p-zero-${i}.v${VERSION}
-    normalizeZip "$basedir"/dist-zip/i2p-zero-${i}.v${VERSION}.zip
+    zip -r9 "$basedir"/dist-zip/NANO-${i}.v${VERSION}.zip NANO-${i}.v${VERSION}
+    normalizeZip "$basedir"/dist-zip/NANO-${i}.v${VERSION}.zip
 done
 
 cd ..
@@ -54,6 +54,3 @@ print4ColsJustified "------------------------" "------------------------" "-----
 for i in ${TARGETS}; do
   print4ColsJustified "${i}"         "`getFileSizeMB $basedir/dist/${i}`"       "`getFileSizeMB $basedir/dist-zip/i2p-zero-${i}.v${VERSION}.zip`"       "\``getHash $basedir/dist-zip/i2p-zero-${i}.v${VERSION}.zip`\`"
 done
-
-echo ""
-echo "Note: Reproducible builds are currently experimental. Due to JDK differences, Builds on Mac will consistently have different hashes than builds on Linux. Official releases will always be built using Docker."
