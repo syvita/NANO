@@ -63,7 +63,7 @@ if [[ "$TARGETS" =~ "win" ]]; then
   mkdir -p "$basedir/dist/win/router/app"
   cp "$basedir/resources/i2p-zero.win.cfg" "$basedir/dist/win/router/app/i2p-zero.cfg"
   mv "$basedir/dist/win/router-tmp" "$basedir/dist/win/router/runtime"
-  cp "$basedir/resources/launcher.exe" "$basedir/dist/win/router/i2p-zero.exe"
+  cp "$basedir/resources/launch.bat" "$basedir/dist/win/router/launch.bat"
   cp "$basedir/import/jpackage/win/classes/jdk/incubator/jpackage/internal/resources/applauncher.dll" "$basedir/dist/win/router/"
 fi
 
