@@ -21,17 +21,17 @@ chmod 777 ./build.sh && ./build.sh
 ```
 Unarchive it.
 ```sh
-unzip dist-zip/i2p-zero-${YOUR_OPERATING_SYSTEM}.v1.20.zip
+unzip dist-zip/NANO-${YOUR_OPERATING_SYSTEM}.${VERSION}.zip
 ```
 Run it.
 ```sh
 # MAC OS
 
-chmod 777 ./dist-zip/i2p-zero-mac.v1.20/router/bin/launch.sh
-./dist-zip/i2p-zero-mac.v1.20/router/bin/launch.sh
+chmod 777 ./dist-zip/NANO-mac.${VERSION}/router/bin/launch.sh
+./dist-zip/NANO-mac.${VERSION}/router/bin/launch.sh
 
 # LINUX
 
-chmod 777 ./dist-zip/i2p-zero-linux.v1.20/router/bin/i2p-zero
-./dist-zip/i2p-zero-linux.v1.20/router/bin/i2p-zero
+chmod 777 ./dist-zip/NANO-linux.${VERSION}/router/bin/i2p-zero
+./dist-zip/NANO-linux.${VERSION}/router/bin/i2p-zero
 ```
