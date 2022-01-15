@@ -57,11 +57,23 @@ public class TunnelControl implements Runnable {
 		}
 
 		public void addTunnel(Tunnel t) {
+			try {
+				Logger.log("event: new tunnel");
+			} catch(Exception e) {
+			    e.printStackTrace();
+			}
+			
 			tunnels.add(t);
 			save();
 			fireChangeEvent();
 		}
 		public void removeTunnel(Tunnel t) {
+			try {
+				Logger.log("event: remove tunnel");
+			} catch(Exception e) {
+			    e.printStackTrace();
+			}
+			
 			tunnels.remove(t);
 			save();
 			fireChangeEvent();

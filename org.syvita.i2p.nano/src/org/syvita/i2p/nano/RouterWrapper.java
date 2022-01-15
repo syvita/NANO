@@ -42,11 +42,8 @@ public class RouterWrapper {
 
 		routerProperties.put("i2p.dir.base", System.getProperty("user.home") + File.separator + ".i2p-zero" + File.separator + "base");
 		routerProperties.put("i2p.dir.config", System.getProperty("user.home") + File.separator + ".i2p-zero" + File.separator + "config");
-
-
-		i2PConfigDir = new File(routerProperties.getProperty("i2p.dir.config"));
 		
-		System.out.printf("i2p data dir at: %s\n", routerProperties.getProperty("i2p.dir.config")); 
+		i2PConfigDir = new File(routerProperties.getProperty("i2p.dir.config"));
 		
 		boolean createdConfigDir = false;
 		
@@ -94,23 +91,25 @@ public class RouterWrapper {
 		return started;
 	}
 
-	public void start(Runnable routerIsAliveCallback) {
-
+	public void start(Runnable routerIsAliveCallback) throws Exception {
 		new Thread(()-> {
-			if (started) return;
+			if (started) {
+				return;
+			}
+			
 			started = true;
 
 			router = new Router(routerProperties);
 
 			new Thread(() -> {
-				router.setKillVMOnEnd(false);
+				router.setKillVMOnEnd(true);
 				router.runRouter();
 			}).start();
 
 			new Thread(() -> {
 				try {
 					while(true) {
-						if (router.isAlive()) {									
+						if (router.isRunning()) {									
 							try {
 								File routerConfigFile = new File(i2PConfigDir, "router.config");
 								
@@ -125,26 +124,31 @@ public class RouterWrapper {
 									Thread.sleep(100);
 									continue;
 								}
-								routerExternalPort = Integer.parseInt(portString.get().split("=")[1]);
-								break;
 								
+								routerExternalPort = Integer.parseInt(portString.get().split("=")[1]);
+								
+								break;
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
-						}
-						else {
+						} else {
 							Thread.sleep(1000);
-							System.out.println("Waiting for I2P router to start...");
 						}
 					}
-
-					System.out.println("I2P router now running");
 
 					new Thread(routerIsAliveCallback).start();
 
 					tunnelControl = new TunnelControl(this, i2PConfigDir, new File(i2PConfigDir, "tunnelTemp"));
 					
 					new Thread(tunnelControl).start();
+					
+					try {
+						String[] SAMArguments = new String[]{"sam.keys", "127.0.0.1", "7656", "i2cp.tcp.host=127.0.0.1", "i2cp.tcp.port=7654"};
+			
+						I2PAppContext context = this.router.getContext();
+			
+						ClientAppManager manager = new ClientAppManagerImpl(context);
+						SAMBridge bridge = new SAMBridge(context, manager, SAMArguments);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -178,29 +182,38 @@ public class RouterWrapper {
 	}
 
 	long lastTriggerTimestamp = 0;
+	
 	public void debouncedUpdateBandwidthLimitKBPerSec(int n) {
 		long triggerTime = new Date().getTime();
 		lastTriggerTimestamp = triggerTime;
-		new Thread(()->{
-			try { Thread.sleep(2000); } catch(InterruptedException e) {}
-			if (lastTriggerTimestamp==triggerTime) {
+		
+		new Thread(() -> {
+			try {
+				Thread.sleep(2000);
+			} catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+				
+			if (lastTriggerTimestamp == triggerTime) {
 				// nothing happened after we were triggered, so proceed
 				updateBandwidthLimitKBps(n);
 			}
 		}).start();
 	}
 
-
 	public static final int defaultBandwidthKBps = (int)(0.5 * 1024) / 8; // 0.5 MBit/s
 	
 	public int loadBandwidthLimitKBps() {
 		try {
 			File configFile = new File(i2PConfigDir, "config.json");
+			
 			if (configFile.exists()) {
 				JSONObject root = new JSONObject(Files.readString(configFile.toPath()));
 				
 				return ((Long) root.get("bandwidthLimitKBps")).intValue();
-			} else return defaultBandwidthKBps;
+			} else {
+				return defaultBandwidthKBps;
+			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
