@@ -1,5 +1,6 @@
 package org.syvita.i2p.nano;
 
+import net.i2p.I2PAppContext;
 import net.i2p.data.router.RouterAddress;
 import net.i2p.data.router.RouterInfo;
 import net.i2p.router.CommSystemFacade;
@@ -8,6 +9,9 @@ import net.i2p.router.RouterContext;
 import net.i2p.router.networkdb.kademlia.FloodfillNetworkDatabaseFacade;
 import net.i2p.router.transport.FIFOBandwidthRefiller;
 import net.i2p.router.transport.TransportUtil;
+import net.i2p.app.ClientAppManager;
+import net.i2p.app.ClientAppManagerImpl;
+import net.i2p.sam.SAMBridge;
 import org.json.*;
 import java.io.File;
 import java.nio.file.Files;
@@ -149,13 +153,18 @@ public class RouterWrapper {
 			
 						ClientAppManager manager = new ClientAppManagerImpl(context);
 						SAMBridge bridge = new SAMBridge(context, manager, SAMArguments);
+			
+						bridge.startup();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					Logger.log("NANO is running, you can make SAM requests now");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}).start();
-
 		}).start();
-
 	}
 
 	public void stop(boolean fastStopAndShutDown) {
